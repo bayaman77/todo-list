@@ -123,7 +123,7 @@ form button:hover {
   opacity: 0.5;
 }
 
-/*CUSTOM SELECTOR */
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -135,7 +135,7 @@ select {
   background-image: none;
 }
 
-/* Custom Select */
+
 .select {
   margin: 1rem;
   position: relative;
@@ -147,7 +147,7 @@ select {
   cursor: pointer;
   width: 12rem;
 }
-/* Arrow */
+
 .select::after {
   content: "\25BC";
   position: absolute;
@@ -158,8 +158,4 @@ select {
   cursor: pointer;
   pointer-events: none;
 }
-/* Transition */
 
-/* .select:hover::after {
-  transform: scale(1.5);
-} */

@@ -3,8 +3,8 @@ import React from "react";
 const Form = ({
   inputText,
   setInputText,
-  todos,
-  setTodos,
+  state,
+  dispatch,
   setStatus,
   edit,
   setEdit,
@@ -16,10 +16,11 @@ const Form = ({
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
+    dispatch({
+      type: 'add',
+      payload: inputText
+    })
+    
     setInputText("");
   };
 
@@ -29,15 +30,15 @@ const Form = ({
 
   const saveEditedTodo = (e) => {
     e.preventDefault();
-    setTodos(todos.map((todo) => {
-      if(todo.id === editingTodoId){
-        return {
-          ...todo,
-          text: inputText
-        }
+    
+    dispatch({
+      type: 'edit',
+      payload: {
+        id: editingTodoId,
+        text: inputText
       }
-      return todo
-    }));
+    })
+
     setInputText("");
     setEdit(false)
   };
