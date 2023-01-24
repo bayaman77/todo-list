@@ -5,7 +5,7 @@ import TodoList from "./components/TodoList";
 import reducer from "./reducer";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem("todos")))
+  const [state, dispatch] = useReducer(reducer, (JSON.parse(localStorage.getItem("todos")) || []))
 
   const [inputText, setInputText] = useState("");
 

@@ -17,10 +17,10 @@ const Form = ({
   const submitTodoHandler = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'add',
-      payload: inputText
-    })
-    
+      type: "add",
+      payload: inputText,
+    });
+
     setInputText("");
   };
 
@@ -30,17 +30,17 @@ const Form = ({
 
   const saveEditedTodo = (e) => {
     e.preventDefault();
-    
+
     dispatch({
-      type: 'edit',
+      type: "edit",
       payload: {
         id: editingTodoId,
-        text: inputText
-      }
-    })
+        text: inputText,
+      },
+    });
 
     setInputText("");
-    setEdit(false)
+    setEdit(false);
   };
 
   return (
@@ -57,6 +57,7 @@ const Form = ({
         </button>
       ) : (
         <button
+          disabled={!inputText}
           onClick={submitTodoHandler}
           className="todo-button"
           type="submit"
