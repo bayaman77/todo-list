@@ -1,63 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../TodoContext";
 
-const Form = ({
-  inputText,
-  setInputText,
-  state,
-  dispatch,
-  setStatus,
-  edit,
-  setEdit,
-  editingTodoId,
-}) => {
-  const inputTextHandler = (e) => {
-    setInputText(e.target.value);
-  };
+const Form = ({ setStatus }) => {
+  const {
+    changeInputValue,
+    addTodoItem,
+    inputValue,
+    editTodoItem,
+    editStatus,
+    toggleEditStatus,
+    changeSelectValue
+  } = useContext(TodoContext);
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "add",
-      payload: inputText,
-    });
 
-    setInputText("");
-  };
+    const newTodo = {
+      id: Date.now(),
+      text: inputValue,
+      completed: false,
+    };
 
-  const statusHandler = (e) => {
-    setStatus(e.target.value);
+    addTodoItem(newTodo);
   };
 
   const saveEditedTodo = (e) => {
     e.preventDefault();
 
-    dispatch({
-      type: "edit",
-      payload: {
-        id: editingTodoId,
-        text: inputText,
-      },
-    });
-
-    setInputText("");
-    setEdit(false);
+    editTodoItem(inputValue);
+    toggleEditStatus(false);
   };
 
   return (
     <form>
       <input
-        value={inputText}
-        onChange={inputTextHandler}
+        value={inputValue}
+        onChange={(e) => changeInputValue(e.target.value)}
         type="text"
         className="todo-input"
       />
-      {edit ? (
+      {editStatus ? (
         <button onClick={saveEditedTodo}>
           <i className="fas fa-redo"></i>
         </button>
       ) : (
         <button
-          disabled={!inputText}
+          disabled={!inputValue}
           onClick={submitTodoHandler}
           className="todo-button"
           type="submit"
@@ -67,7 +55,11 @@ const Form = ({
       )}
 
       <div className="select">
-        <select onChange={statusHandler} name="todos" className="filter-todo">
+        <select
+          onChange={(e) => changeSelectValue(e.target.value)}
+          name="todos"
+          className="filter-todo"
+        >
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>

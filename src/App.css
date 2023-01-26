@@ -46,6 +46,8 @@ form button:hover {
 .todo-list {
   min-width: 30%;
   list-style: none;
+  display: flex; 
+  flex-direction: column; 
 }
 
 .todo {
@@ -77,20 +79,20 @@ form button:hover {
   transition: 0.2s;
 }
 
-.edit-btn{
+.edit-btn {
   background: white;
   color: blueviolet;
 }
-.edit-btn:hover{
+.edit-btn:hover {
   background: blueviolet;
   color: white;
 }
 
-.trash-btn{
+.trash-btn {
   background: white;
   color: red;
 }
-.trash-btn:hover{
+.trash-btn:hover {
   background: red;
   color: white;
 }
@@ -123,7 +125,6 @@ form button:hover {
   opacity: 0.5;
 }
 
-
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -134,7 +135,6 @@ select {
   border: 0 !important;
   background-image: none;
 }
-
 
 .select {
   margin: 1rem;
@@ -158,4 +158,3 @@ select {
   cursor: pointer;
   pointer-events: none;
 }
-
